@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Knob Example!</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/0.0.20130816/polymer.min.js"></script>
+    <link rel="import" href="controls.html">
+    <style>
+    body {
+      font-family: sans-serif;
+    }
+    code {
+      color:#4c4;
+      font-family: sans-serif;
+      font-size:small;
+      font-weight:bold;
+    }
+    </style>
+    <script type="text/javascript">
+
+function Init() {
+  var knobs = document.getElementsByTagName('webaudio-knob');
+  for(var i = 0; i < knobs.length; ++i)
+    knobs[i].addEventListener('change', LogChange);
+}
+function LogChange(e) {
+  var str="change: id="+e.target.id+" value:"+e.target.value;
+  document.getElementById("cons").innerHTML += (str+"<br/>");
+  console.log(str);
+}
+function LogClick(e) {
+  var str="click:"+e.target.id;
+  document.getElementById("cons").innerHTML += (str+"<br/>");
+  console.log(str);
+}
+function Scroll() {
+  document.getElementById("consframe").style.top=window.scrollY+"px";
+}
+function Clear() {
+  document.getElementById("cons").innerHTML="--- Events ---<br/>";
+}
+
+    </script>
+  </head>
+  <body style="background-color:#eee;" onload="Init()">
+
+<div id="consframe" style="position:absolute;right:0;bottom:0;width:250px;height:100%;background:#ccc;overflow:scroll;margin:0;padding:0px 10px">
+  <button onclick="Clear()">Clear</button>
+  <div id="cons">--- Events ---<br/></div>
+</div>
+
+  <h1>Simple Knob Example!</h1>
+  <p>Hi Clay!</p>
+    <div style="background-color:#444;color:#eee;width:640px;margin:30px auto;padding:20px;overflow:hidden">
+      <h2>WebAudio-Knobs</h2>
+
+      <webaudio-knob id="knob2" src="img/LittlePhatty.png" sprites="100" value="60" min="-100" max="100" step="20" diameter="64"></webaudio-knob><br/>
+
+      <code>&lt;webaudio-knob id="knob2" src="img/LittlePhatty.png" sprites="100" value="60" min="-100" max="100" step="20" diameter="64"&gt;&lt;webaudio-knob&gt;</code>
+
+      <div>Knob image file is assigned. Value range can be specified by min/max. The initial value is "60". The value is changed in step of "20".</div><br/><br/>
+
+
+  </div>
+
+
+
+  </body>
+</html>
